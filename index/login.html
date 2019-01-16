@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ch-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<style type="text/css">
+	a{
+		text-decoration: none;
+		color: #999;
+		font-size: 15px;
+	}
+	#return{
+		position: absolute;
+		top: 20px;
+		left: 20px;
+	}
+	#return a{
+		display: block;
+		width: 70px;
+	}
+	#return img{
+		width: 68px;
+		height: 48px;
+	}
+	#login{ 
+		width: 900px;
+		height: 500px;
+		margin: 60px auto;
+		border: 4px solid #99CCFF;
+		border-radius: 10px;
+	}
+	table {
+		margin: 70px auto;
+	}
+	th{
+		height: 40px;
+		font-size: 20px;
+	}
+	input{
+		height: 25px;
+		font-size: 20px;
+		border: 2px solid #99CCFF;
+		border-radius: 5px;
+		padding-left: 7px;
+		margin-left: 7px;
+	}
+	#le{
+		width: 110px;
+		text-align: 40px;
+		padding-right: 10px;
+		background-color: #99CCFF;
+		border-radius: 5px;
+	}
+	#le p{
+		float: right;
+		margin: 0;
+		color: #fff;
+		font-family: '黑体';
+		line-height: 
+	}
+	.check{
+		height: 13px;
+	}
+	.but{
+		height: 40px;
+		width: 80px;
+		font-family: '黑体';
+		background-color: #99CCFF;
+	}
+	</style>
+</head>
+<body>
+	<div id="return"><a href="javascript:history.go(-1)"><img src="images/return.png" alt="返回上一页"></a></div>
+	<div id="login">
+		<form action="">
+			<table>
+				<tr>
+					<th id="le"><p>用户名：</p></th>
+					<th><input type="text" name="username" required="required"></th>
+				</tr>
+				<tr>
+					<th id="le"><p>邮箱：</p></th>
+					<th><input type="text" name="useremail" required="required"></th>
+				</tr>
+				<tr>
+					<th id="le"><p>密码：</p></th>
+					<th><input type="password" name="pw1" required="required"></th>
+				</tr>
+				<tr>
+					<th id="le"><p>重复密码：</p></th>
+					<th><input type="password" name="pw2" required="required"></th>
+				</tr>
+				<tr>
+					<th id="le"><p>手机号码：</p></th>
+					<th><input type="text" name="phone" required="required"></th>
+				</tr>
+				<tr>
+					<th id="le"><p>验证码：</p></th>
+					<th><input type="text" name="ifnumber" required="required"></th>
+				</tr>
+				<tr>
+					<th colspan="2"><input class="check" type="checkbox" name="book" value="book" required="required"><a href="#">阅读相关条约</a></th>
+				</tr>
+				<tr>
+					<th colspan="2"><input class="but" type="submit" value="注册"></th>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

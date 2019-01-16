@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="phone">
+	<meta name="Description" content="描述"> 
+	<meta name="viewport" content="width=device-width,
+	initial-scale=1.0,maximum-scale=1.0,user-scalable=0,minimum-scale=1.0">
+	<title>音乐播放器</title>
+	<link rel="stylesheet" type="text/css"  href="css/main.css">
+	<script type="text/javascript">
+		document.getElementsByTagName("html")[0].style.fontSize=
+		document.documentElement.clientWidth/10+"px";
+		//获取可视区域的宽度/10
+	</script>
+	
+		
+</head>
+<body>
+	<div id="music">
+		<header>
+			<h3>歌名</h3>
+			<p>歌手</p>
+		</header>
+		<section class="singer">
+			<div>
+				<img src="image/zjl.jpg"> 
+			</div>
+		</section>
+		<section class="progress">
+			<div class="bg"></div>
+			<div class="bar"></div>
+		</section>
+		<section class="btn">
+			<div class="prev iconfont">&#xe77f</div>
+			<div class="play iconfont">&#xe781</div>
+			<div class="pause iconfont" style="display:none">&#xe785</div>
+			<div class="next iconfont">&#xe783</div>
+		</section>
+		<audio src="music/告白气球.mp3" id="myMusic"></audio>
+	</div>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(".play").click(function(){
+			$(this).hide();
+			play();
+		});
+		$(".pause").click(function(){
+			$(this).hide();
+			pause();
+		});
+		function play(){
+			$("#myMusic").get(0).play();
+			$(".pause").show();
+			/*点击播放加上类名rotate，旋转*/
+			$(".singer").addClass("rotate");
+		}
+		function pause(){
+			$("#myMusic").get(0).pause();
+			$(".play").show();
+			/*点击播放加上类名rotate，旋转*/
+			$(".singer").removeClass("rotate");
+		}
+		/*进度条实现*/
+		$("#myMusic").get(0).addEventListener("timeupdate", function(){
+			var scale = this.currentTime/this.duration;
+			/*当前时间比总时间*/
+			//console.log(scale);
+			var allWidth = $(".progress").width() -  $(".bar").width();
+			var _left = allWidth*scale;
+			$(".bar").css("transform", "translate("+_left+"px, -0.17rem)");
+			$(".bg").css("width", _left + "px"); 
+		})
+
+		/*进度条拖拽*/
+		$(".bar").get(0).addEventListener("touchstart", function(e){
+			var allWidth = $(".progress").width() -  $(".bar").width();
+			var x = e.changedTouches[0].pageX - $(".bar").offset().left;
+			var music = $("#myMusic").get(0);
+			var scale;
+			document.addEventListener("touchmove", function(e){
+				var l = e.changedTouches[0].pageX;
+				var _left = l - x - $(".progress").offset().left;
+				/*防进度条出界*/
+				if(_left < 0){
+					_left = 0;
+				}else if(_left > allWidth){
+					_left = allWidth;
+				}
+				$(".bar").css("transform", "translate("+_left+"px, -0.17rem)");
+				$(".bg").css("width", _left + "px");
+				/*新时间比例*/
+				scale = _left/allWidth;
+
+			});
+			/*触摸结束，修改播放时间点*/
+			document.addEventListener("touchend", function(){
+				music.currentTime = music.duration * scale;
+			});
+			return false;
+
+		})
+	</script>
+	
+</body>
+</html>
